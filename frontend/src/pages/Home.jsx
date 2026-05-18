@@ -176,6 +176,7 @@ const Home = () => {
       description: 'Overall performance',
       color: 'text-green-500',
       bgColor: 'bg-green-500/10 border-green-500/30',
+      path: '/cgpa',
     },
     {
       title: 'Total Expenses',
@@ -184,6 +185,7 @@ const Home = () => {
       description: 'All time',
       color: 'text-primary',
       bgColor: 'bg-primary/10 border-primary/30',
+      path: '/expenses',
     },
     {
       title: 'This Month',
@@ -192,6 +194,7 @@ const Home = () => {
       description: 'Monthly spending',
       color: 'text-blue-500',
       bgColor: 'bg-blue-500/10 border-blue-500/30',
+      path: '/expenses',
     },
     {
       title: 'Attendance',
@@ -200,6 +203,7 @@ const Home = () => {
       description: 'Average across subjects',
       color: 'text-purple-500',
       bgColor: 'bg-purple-500/10 border-purple-500/30',
+      path: '/attendance',
     },
     {
       title: 'Todo Tasks',
@@ -208,6 +212,7 @@ const Home = () => {
       description: 'Pending tasks',
       color: 'text-orange-500',
       bgColor: 'bg-orange-500/10 border-orange-500/30',
+      path: '/todo',
     },
   ];
 
@@ -232,9 +237,10 @@ const Home = () => {
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div 
+              <Link 
+                to={stat.path}
                 key={index} 
-                className="bg-card text-card-foreground rounded-xl border-2 glass transition-all duration-300 hover:shadow-glow hover:scale-105 hover:border-primary/30 cursor-pointer group animate-slide-up"
+                className="block bg-card text-card-foreground rounded-xl border-2 glass transition-all duration-300 hover:shadow-glow hover:scale-105 hover:border-primary/30 cursor-pointer group animate-slide-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
@@ -253,7 +259,7 @@ const Home = () => {
                     {stat.description}
                   </p>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -583,7 +589,7 @@ const Home = () => {
         </div>
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           <div className="bg-card text-card-foreground rounded-xl glass border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-glow hover:scale-105 group overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none" />
             <div className="p-6 flex flex-col space-y-1.5">
               <div className="p-3 rounded-xl bg-gradient-primary/10 w-fit mb-2 group-hover:bg-gradient-primary group-hover:shadow-glow transition-all">
                 <Wallet className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
@@ -606,7 +612,7 @@ const Home = () => {
           </div>
 
           <div className="bg-card text-card-foreground rounded-xl glass border-2 hover:border-success/50 transition-all duration-300 hover:shadow-lg hover:scale-105 group overflow-hidden relative">
-            <div className="absolute inset-0 bg-success opacity-0 group-hover:opacity-5 transition-opacity" />
+            <div className="absolute inset-0 bg-success opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none" />
             <div className="p-6 flex flex-col space-y-1.5">
               <div className="p-3 rounded-xl bg-success/10 w-fit mb-2 group-hover:bg-success group-hover:shadow-lg transition-all">
                 <Award className="h-6 w-6 text-success group-hover:text-white transition-colors" />
@@ -629,7 +635,7 @@ const Home = () => {
           </div>
 
           <div className="bg-card text-card-foreground rounded-xl glass border-2 hover:border-accent/50 transition-all duration-300 hover:shadow-accent hover:scale-105 group overflow-hidden relative">
-            <div className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-5 transition-opacity" />
+            <div className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none" />
             <div className="p-6 flex flex-col space-y-1.5">
               <div className="p-3 rounded-xl bg-accent/10 w-fit mb-2 group-hover:bg-accent group-hover:shadow-accent transition-all">
                 <CalendarIcon className="h-6 w-6 text-accent group-hover:text-white transition-colors" />
@@ -652,7 +658,7 @@ const Home = () => {
           </div>
 
           <div className="bg-card text-card-foreground rounded-xl glass border-2 hover:border-warning/50 transition-all duration-300 hover:shadow-lg hover:scale-105 group overflow-hidden relative">
-            <div className="absolute inset-0 bg-warning opacity-0 group-hover:opacity-5 transition-opacity" />
+            <div className="absolute inset-0 bg-warning opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none" />
             <div className="p-6 flex flex-col space-y-1.5">
               <div className="p-3 rounded-xl bg-warning/10 w-fit mb-2 group-hover:bg-warning group-hover:shadow-lg transition-all">
                 <ListTodo className="h-6 w-6 text-warning group-hover:text-white transition-colors" />
