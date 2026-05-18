@@ -20,6 +20,9 @@ const Home = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [progressInputs, setProgressInputs] = useState({});
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [greeting, setGreeting] = useState('Welcome back!');
+  const [greetingEmoji, setGreetingEmoji] = useState('👋');
+  const [quote, setQuote] = useState('');
   const [newTarget, setNewTarget] = useState({
     task: '',
     trackingType: 'time',
@@ -30,6 +33,30 @@ const Home = () => {
   });
   
   useEffect(() => {
+    // Dynamic greeting
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      setGreeting('Good morning, Scholar!');
+      setGreetingEmoji('🌅');
+    } else if (hour >= 12 && hour < 18) {
+      setGreeting('Good afternoon, Achiever!');
+      setGreetingEmoji('☀️');
+    } else {
+      setGreeting('Good evening, Night Owl!');
+      setGreetingEmoji('🌙');
+    }
+
+    // Daily quote
+    const quotes = [
+      "The secret of getting ahead is getting started.",
+      "It always seems impossible until it's done.",
+      "Don't watch the clock; do what it does. Keep going.",
+      "Success is the sum of small efforts, repeated day-in and day-out.",
+      "The future depends on what you do today.",
+      "Believe you can and you're halfway there."
+    ];
+    setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+
     // Expenses
     const expenses = expenseStorage.getExpenses();
     const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
@@ -224,10 +251,16 @@ const Home = () => {
           <div className="inline-block p-4 rounded-2xl bg-gradient-primary shadow-glow mb-4 animate-float">
             <GraduationCap className="h-12 w-12 text-white" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-3">
-            Welcome back, Student! 👋
+          <h1 className="text-4xl sm:text-5xl font-bold mb-3 flex flex-wrap justify-center items-center gap-2">
+            <span className="bg-gradient-primary bg-clip-text text-transparent pb-2 leading-tight">
+              {greeting}
+            </span>
+            <span className="text-4xl sm:text-5xl inline-block leading-none">{greetingEmoji}</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-foreground max-w-2xl mx-auto font-medium italic mb-2">
+            "{quote}"
+          </p>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
             Track your academic journey and manage your finances with ease
           </p>
         </div>
